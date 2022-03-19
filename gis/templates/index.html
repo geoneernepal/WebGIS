@@ -2,93 +2,206 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>WebGIS</title>
 
     <!-- Bootstrap -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- custom css  -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
-
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
 
     <!-- leaflet  -->
-         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
 
-   <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
-
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
   </head>
   <body>
-<div id="container">
-    <div id="map">
-         
-     </div>
+    <div id="container">
+      <div id="map"></div>
 
-     <div id="left-pane">
-         <div class="left-pane-detail">
-             <img src="{% static 'media/logo.png'%}" height="60px">
-             <hr>
+      <div id="left-pane">
+        <div class="left-pane-detail">
+          <img src="{% static 'media/logo.png'%}" height="60px" />
+          <hr />
 
-             <!-- ---- file uploader ---- -->
-              <div class="input-group file-upload">
-                
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01">
-                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
-                <div class="input-group-prepend">
-                  <button class="btn btn-success">Upload</button>
-                </div>
-              </div>
-
-            <!-- file uploader closes  -->
-             
-
-              <!-- --- tablist ---  -->
-             <div class="d-flex align-items-start">
-            <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</button>
-              <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-              <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
-              <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+          <!-- ---- file uploader ---- -->
+          <div class="input-group file-upload">
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01"
+              />
+              <label class="custom-file-label" for="inputGroupFile01"
+                >Choose file</label
+              >
             </div>
-            <div class="tab-content" id="v-pills-tabContent">
-              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-              <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+            <div class="input-group-prepend">
+              <button class="btn btn-success">Upload</button>
             </div>
           </div>
 
-              <!-- --- tablist closes ---  -->
+          <!-- file uploader closes  -->
 
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
+          <!-- --- tablist ---  -->
+          <div class="d-flex align-items-start">
+            <div
+              class="nav flex-column nav-pills me-3"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <button
+                class="nav-link active"
+                id="v-pills-home-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-home"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-home"
+                aria-selected="true"
+              >
+                Home
+              </button>
+              <button
+                class="nav-link"
+                id="v-pills-profile-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-profile"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-profile"
+                aria-selected="false"
+              >
+                Profile
+              </button>
+              <button
+                class="nav-link"
+                id="v-pills-messages-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-messages"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-messages"
+                aria-selected="false"
+              >
+                Messages
+              </button>
+              <button
+                class="nav-link"
+                id="v-pills-settings-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-settings"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-settings"
+                aria-selected="false"
+              >
+                Settings
+              </button>
             </div>
+            <div class="tab-content" id="v-pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="v-pills-home"
+                role="tabpanel"
+                aria-labelledby="v-pills-home-tab"
+              >
+                Home
+              </div>
+              <div
+                class="tab-pane fade"
+                id="v-pills-profile"
+                role="tabpanel"
+                aria-labelledby="v-pills-profile-tab"
+              >
+                profile
+              </div>
+              <div
+                class="tab-pane fade"
+                id="v-pills-messages"
+                role="tabpanel"
+                aria-labelledby="v-pills-messages-tab"
+              >
+                messeges
+              </div>
+              <div
+                class="tab-pane fade"
+                id="v-pills-settings"
+                role="tabpanel"
+                aria-labelledby="v-pills-settings-tab"
+              >
+                settings
+              </div>
+            </div>
+          </div>
+          <!-- check boxes -->
+          <div class="checkBoxDiv">
+            <div class="checkBox">
+              <input type="checkbox" name="infoGraph" />
+              <label for="infoGraph"
+                >show Legend</label
+              >
+            </div>
+            <div class="checkBox">
+              <input type="checkbox" name="legend"/>
+              <label for="legend">show Infograph</label>
+            </div> 
+          </div>
+        
+
+          <!-- --- tablist closes ---  -->
+
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life
+              accusamus terry richardson ad squid. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente
+              ea proident.
+            </div>
+          </div>
         </div>
-     </div>
-</div>
+      </div>
+      <!-- <div class="right-pane-top" draggable="false" onmousedown="event.preventDefault() ? event.preventDefault() : event.returnValue = false"></div> -->
+      <div class="right-pane-top" draggable="false"></div>
+      <div class="right-pane-bottom"></div>
+    </div>
 
-
-
-
-
-
-
+   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -96,4 +209,6 @@
   </body>
 
   <script src="{% static 'js/map.js' %}"></script>
-</html>
+  <!-- toggle active class  -->
+  <script src="{% static '/js/button.js' %}"></script>
+  </html>
