@@ -29,6 +29,7 @@ body{
     z-index: 10;
     background-color: aliceblue;
     /* opacity: 0.8; */
+    /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .left-pane-detail{
@@ -41,3 +42,48 @@ body{
     margin-right: 5px;
 }
 /* --- leaflet ---  */
+
+/* checkbox div */
+
+.checkBoxDiv {
+    display: flex;
+    gap: 20px;
+    position:absolute;
+    bottom: 0;
+    left: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkBox {
+    padding: 0 10px;
+}
+
+.right-pane-top {
+    height: 20vh;
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 50px;
+    z-index: 10;
+    background: aliceblue;
+    display: none;
+    /* background: rgba(0, 0, 0, 0.5); */
+}
+
+.right-pane-bottom {
+    height: 20vh;
+    width: 20%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 30px 10px;
+    z-index: 10;;
+    background: aliceblue;
+    /* background: rgba(0, 0, 0, 0.5); */
+    display: none;
+}
+
+
+
