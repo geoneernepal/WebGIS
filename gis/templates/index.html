@@ -213,7 +213,7 @@
                       ><input type="date" placeholder="end-date" />
                     </div>
                   </div>
-                  <div>
+                  <div class="Rand0Div">
                     <div class="RangeDiv">
                       <div>
                         <label for="range">Range:</label>
@@ -263,14 +263,27 @@
                         <output>0</output>
                       </div>
                       <div class="radios">
-                        <input
-                          type="radio"
-                          name="checkRadio"
-                          id="gamma"
-                          value="gamma"
-                          id="gamma"
-                        />
-                        <label for="gamma">Gamma</label>
+                        <div>
+                          <input
+                            type="radio"
+                            name="checkRadio"
+                            id="gamma"
+                            value="gamma"
+                            id="gamma"
+                          />
+                          <label for="gamma">Gamma</label>
+                          <div class="gammaSlider">
+                            <input
+                              type="range"
+                              class="slider"
+                              value="0"
+                              min="1"
+                              max="20"
+                              oninput="this.nextElementSibling.value = this.value"
+                            />
+                            <output>0</output>
+                          </div>
+                        </div>
                         <input
                           type="radio"
                           name="checkRadio"

@@ -148,7 +148,7 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   margin: 10px 5px;
 }
 
@@ -192,17 +192,20 @@ body {
 .imageryDiv {
   display: flex;
   flex-direction: column;
+  border: 1px solid;
+  padding: 10px;
 }
 
 .imageryDiv .imagery {
   display: flex;
-  gap: 20px;
-  margin: 10px 5px;
+  gap: 36px;
+  margin: 10px 0;
 }
 
 .imagery select {
   background: #d8d8d8;
   color: rgb(0, 0, 0);
+
 }
 
 .DateRangeDiv {
@@ -245,16 +248,25 @@ body {
 .form button {
   width: 100px;
   border: none;
-  height: 30px;
+  height: 40px;
   border-radius: 5px;
   background-color: #127C00;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .btn {
   display: flex;
   justify-content: flex-end;
-  padding: 15px;
+  
+}
+
+.Rand0Div {
+  border: 1px solid;  
+  padding: 10px;
+}
+
+.gammaSlider {
+  display: none;
 }
 

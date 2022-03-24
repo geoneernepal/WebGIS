@@ -14,13 +14,17 @@ const startDate = document.querySelector(".startDate");
 const palette = document.querySelector("#palette")
 const gamma = document.querySelector("#gamma")
 const colorInput = document.querySelector(".colorInput")
+const gammaSlider = document.querySelector(".gammaSlider")
 
 palette.addEventListener("click",(e) => {
     colorInput.style.display = e.target.checked ? "block" : "none"
+    gammaSlider.style.display = e.target.checked ? "none" : "none"
 })
 
 gamma.addEventListener("click",(e) => {
+  console.log(e)
   colorInput.style.display = e.target.checked ? "none" : "none"
+  gammaSlider.style.display = e.target.checked ? "block" : "none"
 })
 
 currentbtn.forEach((btn) => {
