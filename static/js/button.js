@@ -1,15 +1,31 @@
-const currentbtn = document.querySelectorAll(".nav-link");
+const currentbtn = document.querySelectorAll(".button");
 const currentDiv = document.querySelectorAll(".fade");
-const checkBoxes = document.querySelector(".checkBoxDiv")
-const rightPaneTop = document.querySelector(".right-pane-top")
-const rightPaneBottom = document.querySelector(".right-pane-bottom")
-const checkbox = document.querySelectorAll(".checkBox")
-const container = document.querySelector("#container")
-const draggable = document.querySelector(".right-pane-top")
-const dropzone = document.querySelector(".file-upload")
+const checkBoxes = document.querySelector(".checkBoxDiv");
+const rightPaneTop = document.querySelector(".right-pane-top");
+const rightPaneBottom = document.querySelector(".right-pane-bottom");
+const checkbox = document.querySelectorAll(".checkBox");
+const container = document.querySelector("#container");
+const draggable = document.querySelector(".right-pane-top");
+// const dragArea = document.querySelector(".file-upload")
+const dragArea = document.querySelector(".dragArea");
+const fileInput = document.querySelector(".fileInput");
+const dateInput = document.querySelector(".dateInput");
+const startDate = document.querySelector(".startDate");
+const palette = document.querySelector("#palette")
+const gamma = document.querySelector("#gamma")
+const colorInput = document.querySelector(".colorInput")
+
+palette.addEventListener("click",(e) => {
+    colorInput.style.display = e.target.checked ? "block" : "none"
+})
+
+gamma.addEventListener("click",(e) => {
+  colorInput.style.display = e.target.checked ? "none" : "none"
+})
 
 currentbtn.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    console.log(e.currentTarget);
     currentbtn.forEach((btn) => btn.classList.remove("active"));
     e.target.classList.toggle("active");
   });
@@ -21,7 +37,7 @@ currentbtn.forEach((btn) => {
     currentDiv.forEach((div) => div.classList.remove("active"));
     let targetDivId = e.target.getAttribute("data-bs-target").substring(1);
     toggleShow(document.getElementById(targetDivId));
-  });   
+  });
 });
 
 const toggleShow = (e) => {
@@ -29,21 +45,17 @@ const toggleShow = (e) => {
   e.classList.toggle("active");
 };
 
-
 const showHide = (e) => {
-    if(e.target.type !== "checkbox")
-    return;
+  if (e.target.type !== "checkbox") return;
 
-    if(e.target.name === "legend")
-        rightPaneTop.style.display = e.target.checked ? "block" : "none"
-    else 
-        rightPaneBottom.style.display = e.target.checked ? "block" : "none"
-      
-}
+  if (e.target.name === "legend")
+    rightPaneTop.style.display = e.target.checked ? "block" : "none";
+  else rightPaneBottom.style.display = e.target.checked ? "block" : "none";
+};
 
-checkbox.forEach(box => {
-    box.addEventListener("click",showHide)
-})
+checkbox.forEach((box) => {
+  box.addEventListener("click", showHide);
+});
 
 let active = false;
 let currentX;
@@ -62,79 +74,65 @@ container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
-    if (e.type === "touchstart") {
-      initialX = e.touches[0].clientX - xOffset;
-      initialY = e.touches[0].clientY - yOffset;
-    } else {
-      initialX = e.clientX - xOffset;
-      initialY = e.clientY - yOffset;
-    }
-  
-    if (e.target === draggable) {
-      active = true;
-    }
+  if (e.type === "touchstart") {
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
+  } else {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+  }
+
+  if (e.target === draggable) {
+    active = true;
+  }
 }
 
 function dragEnd(e) {
-    initialX = currentX;
-    initialY = currentY;
+  initialX = currentX;
+  initialY = currentY;
 
-    active = false;
-  }
+  active = false;
+}
 
-  function drag(e) {
-    if (active) {
-    
-      e.preventDefault();
-    
-      if (e.type === "touchmove") {
-        currentX = e.touches[0].clientX - initialX;
-        currentY = e.touches[0].clientY - initialY;
-      } else {
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-      }
+function drag(e) {
+  if (active) {
+    e.preventDefault();
 
-      xOffset = currentX;
-      yOffset = currentY;
-
-      setTranslate(currentX, currentY, draggable);
+    if (e.type === "touchmove") {
+      currentX = e.touches[0].clientX - initialX;
+      currentY = e.touches[0].clientY - initialY;
+    } else {
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
     }
-  }
 
-  function setTranslate(xPos, yPos, el) {
-    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    xOffset = currentX;
+    yOffset = currentY;
+
+    setTranslate(currentX, currentY, draggable);
   }
+}
+
+function setTranslate(xPos, yPos, el) {
+  el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+}
 
 //   file upload drag and drop
+dragArea.ondragover = dragArea.ondragenter = function (evt) {
+  evt.preventDefault();
+};
 
-// Optional.   Show the copy icon when dragging over.  Seems to only work for chrome.
-dropzone.addEventListener('dragover', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-});
+dragArea.ondrop = function (evt) {
+  console.log("file drop");
+  // pretty simple -- but not for IE :(
+  fileInput.files = evt.dataTransfer.files;
 
-// Get file data on drop
-dropzone.addEventListener('drop', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    var files = e.dataTransfer.files; // Array of all files
+  // If you want to use some of the dropped files
+  const dT = new DataTransfer();
+  dT.items.add(evt.dataTransfer.files[0]);
+  dT.items.add(evt.dataTransfer.files[3]);
+  fileInput.files = dT.files;
+  console.log(dT);
 
-    for (var i=0, file; file=files[i]; i++) {
-        if (file.type.match(/image.*/)) {
-            var reader = new FileReader();
-
-            reader.onload = function(e2) {
-                // finished reading file data.
-                var img = document.createElement('img');
-                img.src= e2.target.result;
-                document.body.appendChild(img);
-            }
-
-            reader.readAsDataURL(file); // start reading the file data.
-        }
-    }
-});
-
-  
+  evt.preventDefault();
+};

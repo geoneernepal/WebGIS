@@ -41,6 +41,23 @@
       crossorigin=""
     />
 
+    <!-- font awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+      integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- dropzone package -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+      type="text/css"
+    />
+
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script
       src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -58,13 +75,15 @@
           <hr />
 
           <!-- ---- file uploader ---- -->
-          <div class="input-group file-upload">
+          <!-- <div class="input-group file-upload-wrapper">
             <div class="custom-file">
               <input
                 type="file"
                 class="custom-file-input"
                 id="inputGroupFile01"
                 aria-describedby="inputGroupFileAddon01"
+                class = "file-upload"
+                id ="input-file-now"
               />
               <label class="custom-file-label" for="inputGroupFile01"
                 >Choose file</label
@@ -73,14 +92,33 @@
             <div class="input-group-prepend">
               <button class="btn btn-success">Upload</button>
             </div>
+          </div> -->
+
+          <div
+            class="dragArea d-flex flex-column align-items-center justify-items-center border p-3"
+          >
+            <div class="icon"><i class="fa-solid fa-upload mh-50"></i></div>
+            <div>
+              <label for="getFile" role="button"
+                ><p><strong>Choose a file</strong> or drag it here</p></label
+              >
+              <input
+                type="file"
+                class="fileInput d-none"
+                name="file"
+                id="getFile"
+                multiple
+              />
+            </div>
           </div>
 
           <!-- file uploader closes  -->
 
           <!-- --- tablist ---  -->
-          <div class="d-flex align-items-start">
-            <div
-              class="nav flex-column nav-pills me-3"
+          <!-- <div class="d-flex align-items-start flex-column m-2"> -->
+          <!-- <div class="buttonDiv"> -->
+          <!-- <div
+              class="nav flex nav-pills me-3 w-100"
               id="v-pills-tab"
               role="tablist"
               aria-orientation="vertical"
@@ -133,6 +171,21 @@
               >
                 Settings
               </button>
+            </div> -->
+          <div class="div">
+            <div class="buttonDiv">
+              <button class="button active" data-bs-target="#v-pills-home">
+                NDVI
+              </button>
+              <button class="button" data-bs-target="#v-pills-messages">
+                NDBI
+              </button>
+              <button class="button" data-bs-target="#v-pills-profile">
+                NDWI
+              </button>
+              <button class="button" data-bs-target="#v-pills-settings">
+                Hillshade
+              </button>
             </div>
             <div class="tab-content" id="v-pills-tabContent">
               <div
@@ -141,7 +194,99 @@
                 role="tabpanel"
                 aria-labelledby="v-pills-home-tab"
               >
-                Home
+                <div class="form">
+                  <div class="imageryDiv">
+                    <div class="imagery">
+                      <label for="imagery">Imagery:</label>
+                      <select name="" id="">
+                        <option value="" aria-placeholder="Select an imagery">
+                          Select an imagery
+                        </option>
+                        <option value="">Landsat8</option>
+                        <option value="">Sentinel2A</option>
+                      </select>
+                    </div>
+                    <div class="DateRangeDiv">
+                      <label for="">Date Range:</label>
+                      <input type="date" placeholder="start-date" /><span
+                        >to</span
+                      ><input type="date" placeholder="end-date" />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="RangeDiv">
+                      <div>
+                        <label for="range">Range:</label>
+                        <input
+                          type="number"
+                          name="amountInput"
+                          min="0"
+                          max="0.05"
+                          value="0"
+                          step="0.01"
+                        />
+                        <span>-</span>
+                        <input
+                          type="number"
+                          name="amountInput"
+                          min="0"
+                          max="0.05"
+                          value="0"
+                          step="0.01"
+                        />
+                      </div>
+                      <div>
+                        <select name="" id="">
+                          <option value="custom" selected disabled>
+                            Custom
+                          </option>
+                          <option value="">Stretch: 1 &#963;</option>
+                          <option value="">Stretch: 2 &#963;</option>
+                          <option value="">Stretch: 3 &#963;</option>
+                          <option value="">Stretch: 90%</option>
+                          <option value="">Stretch: 98%</option>
+                          <option value="">Stretch: 100%</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="opacityDiv">
+                      <div class="opacity">
+                        <p>opacity</p>
+                        <input
+                          type="range"
+                          class="slider"
+                          value="0"
+                          min="1"
+                          max="20"
+                          oninput="this.nextElementSibling.value = this.value"
+                        />
+                        <output>0</output>
+                      </div>
+                      <div class="radios">
+                        <input
+                          type="radio"
+                          name="checkRadio"
+                          id="gamma"
+                          value="gamma"
+                          id="gamma"
+                        />
+                        <label for="gamma">Gamma</label>
+                        <input
+                          type="radio"
+                          name="checkRadio"
+                          id="palette"
+                          value="palette"
+                          class="palette"
+                        />
+                        <label for="palette">Palette</label>
+                        <input type="color" class="colorInput" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="btn">
+                    <button>Apply</button>
+                  </div>
+                </div>
               </div>
               <div
                 class="tab-pane fade"
@@ -168,21 +313,19 @@
                 settings
               </div>
             </div>
-          </div>
-          <!-- check boxes -->
-          <div class="checkBoxDiv">
-            <div class="checkBox">
-              <input type="checkbox" name="infoGraph" />
-              <label for="infoGraph"
-                >show Legend</label
-              >
+            <!-- </div> -->
+            <!-- check boxes -->
+            <div class="checkBoxDiv">
+              <div class="checkBox">
+                <input type="checkbox" name="infoGraph" />
+                <label for="infoGraph">show Legend</label>
+              </div>
+              <div class="checkBox">
+                <input type="checkbox" name="legend" />
+                <label for="legend">show Infograph</label>
+              </div>
             </div>
-            <div class="checkBox">
-              <input type="checkbox" name="legend"/>
-              <label for="legend">show Infograph</label>
-            </div> 
           </div>
-        
 
           <!-- --- tablist closes ---  -->
 
@@ -201,7 +344,6 @@
       <div class="right-pane-bottom"></div>
     </div>
 
-   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -211,4 +353,4 @@
   <script src="{% static 'js/map.js' %}"></script>
   <!-- toggle active class  -->
   <script src="{% static '/js/button.js' %}"></script>
-  </html>
+</html>
