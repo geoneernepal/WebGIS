@@ -15,17 +15,33 @@ const palette = document.querySelector("#palette")
 const gamma = document.querySelector("#gamma")
 const colorInput = document.querySelector(".colorInput")
 const gammaSlider = document.querySelector(".gammaSlider")
+const radios = document.querySelectorAll(".radios")
+const visualizationBtn = document.querySelector(".visualizationBtn")
+const showRangeDiv = document.querySelector(".showRangeDiv")
 
-palette.addEventListener("click",(e) => {
-    colorInput.style.display = e.target.checked ? "block" : "none"
-    gammaSlider.style.display = e.target.checked ? "none" : "none"
-})
-
-gamma.addEventListener("click",(e) => {
+visualizationBtn.addEventListener("click",(e) => {
   console.log(e)
-  colorInput.style.display = e.target.checked ? "none" : "none"
-  gammaSlider.style.display = e.target.checked ? "block" : "none"
 })
+
+const showDiv = (e) => {
+  if(e.target.type !== "radio")
+  return;
+
+  if(e.target.id === "gamma"){
+    gammaSlider.style.display = e.target.checked ? "block" : "none"
+    colorInput.style.display = "none"
+  }else{
+    colorInput.style.display = e.target.checked ? "block" : "none"
+    gammaSlider.style.display = "none"
+  }
+}
+
+radios.forEach(radio => {
+  radio.addEventListener("click",showDiv)
+})
+
+let colors = []
+
 
 currentbtn.forEach((btn) => {
   btn.addEventListener("click", (e) => {

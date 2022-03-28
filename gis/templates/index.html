@@ -174,15 +174,18 @@
             </div> -->
           <div class="div">
             <div class="buttonDiv">
-              <button class="button active" data-bs-target="#v-pills-home">
-                NDVI
-              </button>
-              <button class="button" data-bs-target="#v-pills-messages">
-                NDBI
-              </button>
-              <button class="button" data-bs-target="#v-pills-profile">
-                NDWI
-              </button>
+              <div class="btn-group">
+                <button class="button active" data-bs-target="#v-pills-home">
+                  NDVI
+                </button>
+                <button class="button" data-bs-target="#v-pills-messages">
+                  NDBI
+                </button>
+                <button class="button" data-bs-target="#v-pills-profile">
+                  NDWI
+                </button>
+              </div>
+
               <button class="button" data-bs-target="#v-pills-settings">
                 Hillshade
               </button>
@@ -198,106 +201,122 @@
                   <div class="imageryDiv">
                     <div class="imagery">
                       <label for="imagery">Imagery:</label>
-                      <select name="" id="">
-                        <option value="" aria-placeholder="Select an imagery">
+                      <select name="" id="" class="form-control">
+                        <option
+                          value=""
+                          aria-placeholder="Select an imagery"
+                          selected
+                          disabled
+                        >
                           Select an imagery
                         </option>
                         <option value="">Landsat8</option>
                         <option value="">Sentinel2A</option>
                       </select>
                     </div>
-                    <div class="DateRangeDiv">
+                    <div class="DateRangeDiv input-group date">
                       <label for="">Date Range:</label>
                       <input type="date" placeholder="start-date" /><span
                         >to</span
                       ><input type="date" placeholder="end-date" />
                     </div>
+                    <div class="imageryBtn">
+                      <button>show</button>
+                    </div>
                   </div>
                   <div class="Rand0Div">
-                    <div class="RangeDiv">
-                      <div>
-                        <label for="range">Range:</label>
-                        <input
-                          type="number"
-                          name="amountInput"
-                          min="0"
-                          max="0.05"
-                          value="0"
-                          step="0.01"
-                        />
-                        <span>-</span>
-                        <input
-                          type="number"
-                          name="amountInput"
-                          min="0"
-                          max="0.05"
-                          value="0"
-                          step="0.01"
-                        />
-                      </div>
-                      <div>
-                        <select name="" id="">
-                          <option value="custom" selected disabled>
-                            Custom
-                          </option>
-                          <option value="">Stretch: 1 &#963;</option>
-                          <option value="">Stretch: 2 &#963;</option>
-                          <option value="">Stretch: 3 &#963;</option>
-                          <option value="">Stretch: 90%</option>
-                          <option value="">Stretch: 98%</option>
-                          <option value="">Stretch: 100%</option>
-                        </select>
-                      </div>
+                    <div class="visualization">
+                      <h4>Visualization</h4>
+                      <button class="visualizationBtn">Show layer</button>
                     </div>
-                    <div class="opacityDiv">
-                      <div class="opacity">
-                        <p>opacity</p>
-                        <input
-                          type="range"
-                          class="slider"
-                          value="0"
-                          min="1"
-                          max="20"
-                          oninput="this.nextElementSibling.value = this.value"
-                        />
-                        <output>0</output>
-                      </div>
-                      <div class="radios">
+                    <div class="showRangeDiv">
+                      <div class="RangeDiv">
                         <div>
+                          <label for="range">Range:</label>
+                          <input
+                            type="number"
+                            name="amountInput"
+                            min="0"
+                            max="0.05"
+                            value="0"
+                            step="0.01"
+                          />
+                          <span>-</span>
+                          <input
+                            type="number"
+                            name="amountInput"
+                            min="0"
+                            max="0.05"
+                            value="0"
+                            step="0.01"
+                          />
+                        </div>
+                        <div>
+                          <select name="" id="" class="form-control">
+                            <option value="custom" selected disabled>
+                              Custom
+                            </option>
+                            <option value="">Stretch: 1 &#963;</option>
+                            <option value="">Stretch: 2 &#963;</option>
+                            <option value="">Stretch: 3 &#963;</option>
+                            <option value="">Stretch: 90%</option>
+                            <option value="">Stretch: 98%</option>
+                            <option value="">Stretch: 100%</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="opacityDiv">
+                        <div class="opacity">
+                          <p>opacity</p>
+                          <input
+                            type="range"
+                            class="slider"
+                            value="0"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            oninput="this.nextElementSibling.value = this.value"
+                          />
+                          <output>0</output>
+                        </div>
+                        <div class="radios">
+                          <div>
+                            <input
+                              type="radio"
+                              name="checkRadio"
+                              id="gamma"
+                              value="gamma"
+                              id="gamma"
+                              checked
+                            />
+                            <label for="gamma">Gamma</label>
+                            <div class="gammaSlider">
+                              <input
+                                type="range"
+                                class="slider"
+                                value="0"
+                                min="1"
+                                max="20"
+                                oninput="this.nextElementSibling.value = this.value"
+                              />
+                              <output>0</output>
+                            </div>
+                          </div>
                           <input
                             type="radio"
                             name="checkRadio"
-                            id="gamma"
-                            value="gamma"
-                            id="gamma"
+                            id="palette"
+                            value="palette"
+                            class="palette"
                           />
-                          <label for="gamma">Gamma</label>
-                          <div class="gammaSlider">
-                            <input
-                              type="range"
-                              class="slider"
-                              value="0"
-                              min="1"
-                              max="20"
-                              oninput="this.nextElementSibling.value = this.value"
-                            />
-                            <output>0</output>
-                          </div>
+                          <label for="palette">Palette</label>
+                          <input type="color" class="colorInput" />
                         </div>
-                        <input
-                          type="radio"
-                          name="checkRadio"
-                          id="palette"
-                          value="palette"
-                          class="palette"
-                        />
-                        <label for="palette">Palette</label>
-                        <input type="color" class="colorInput" />
+                      </div>
+                      <div class="btn">
+                        <button>Apply</button>
                       </div>
                     </div>
-                  </div>
-                  <div class="btn">
-                    <button>Apply</button>
                   </div>
                 </div>
               </div>

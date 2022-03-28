@@ -125,7 +125,7 @@ body {
   display: flex;
   gap: 10px;
   /* width: 100%; */
-  margin: 10px auto;
+  margin: 10px 5px 0;
   align-items: center;
   justify-items: center;
   flex-wrap: wrap;
@@ -135,10 +135,11 @@ body {
 .buttonDiv button {
   border: none;
   padding: 10px 15px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   color: rgb(219, 219, 219);
   background-color: #14A800;
 }
+
 
 .buttonDiv .active{
   background-color: #127C00;
@@ -202,17 +203,21 @@ body {
   margin: 10px 0;
 }
 
-.imagery select {
+/* .imagery select {
   background: #d8d8d8;
   color: rgb(0, 0, 0);
 
+} */
+.imagery label {
+  margin-top: 5px;
 }
 
-.DateRangeDiv {
+/* .DateRangeDiv {
   display: flex;
   gap: 5px;
   align-items: center;
-}
+  max-width: 100%;
+} */
 
 .DateRangeDiv input::-webkit-datetime-edit {
   padding: 0.2em;
@@ -225,12 +230,12 @@ body {
   justify-content: space-between;
 }
 
-.RangeDiv select {
+/* .RangeDiv select {
   margin-right: 10px;
   padding: 5px;
   background: #d8d8d8;
   color: rgb(0, 0, 0);
-}
+} */
 
 .radios {
   display: flex;
@@ -258,15 +263,40 @@ body {
 .btn {
   display: flex;
   justify-content: flex-end;
-  
+  align-items: center;
+    
 }
 
 .Rand0Div {
   border: 1px solid;  
   padding: 10px;
+  max-width: 100%;
 }
 
-.gammaSlider {
+/* .gammaSlider {
   display: none;
+} */
+
+.visualization {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
+.visualization button {
+  text-align: center;
+  align-items: center;
+  height: 40px;
+  width: 120px;
+  font-size: 1.1rem;
+  /* text-transform: uppercase; */
+}
+
+.imageryBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 0;
+}
