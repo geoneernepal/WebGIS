@@ -227,7 +227,11 @@
                   <div class="Rand0Div">
                     <div class="visualization">
                       <h4>Visualization</h4>
-                      <button class="visualizationBtn">Show layer</button>
+                      <!-- <button class="visualizationBtn">Show layer</button> -->
+                      <label for="" class="switch">
+                        <input type="checkbox" class="switchCheckbox">
+                        <span class="switchSlider round"></span>
+                      </label>
                     </div>
                     <div class="showRangeDiv">
                       <div class="RangeDiv">
@@ -380,6 +384,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+   
+
   </body>
 
   <script src="{% static 'js/map.js' %}"></script>

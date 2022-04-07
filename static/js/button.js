@@ -18,6 +18,21 @@ const gammaSlider = document.querySelector(".gammaSlider")
 const radios = document.querySelectorAll(".radios")
 const visualizationBtn = document.querySelector(".visualizationBtn")
 const showRangeDiv = document.querySelector(".showRangeDiv")
+const switchCheckBox = document.querySelector(".switchCheckbox")
+const switchCheck = document.querySelector(".switch")
+
+// if(switchCheckBox.checked){
+//   switchCheckBox.checked === false
+// }else {
+//   switchCheckBox.checked === true
+// }
+
+
+const toggleCheckBox = () => {
+  switchCheckBox.checked = !switchCheckBox.checked
+}
+
+switchCheck.addEventListener("click",toggleCheckBox)
 
 visualizationBtn.addEventListener("click",(e) => {
   console.log(e)
