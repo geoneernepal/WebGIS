@@ -71,7 +71,11 @@
 
       <div id="left-pane">
         <div class="left-pane-detail">
-          <img src="{% static 'media/logo.png'%}" height="60px" />
+          <div style="display: flex; justify-content: space-between">
+            <img src="{% static 'media/logo.png'%}" height="60px" />
+            <button class="left-pane-btn show hide">show</button>
+          </div>
+
           <hr />
 
           <!-- ---- file uploader ---- -->
@@ -93,31 +97,31 @@
               <button class="btn btn-success">Upload</button>
             </div>
           </div> -->
-
-          <div
-            class="dragArea d-flex flex-column align-items-center justify-items-center border p-3"
-          >
-            <div class="icon"><i class="fa-solid fa-upload mh-50"></i></div>
-            <div>
-              <label for="getFile" role="button"
-                ><p><strong>Choose a file</strong> or drag it here</p></label
-              >
-              <input
-                type="file"
-                class="fileInput d-none"
-                name="file"
-                id="getFile"
-                multiple
-              />
+          <div class="toggleShow">
+            <div
+              class="dragArea d-flex flex-column align-items-center justify-items-center border p-3"
+            >
+              <div class="icon"><i class="fa-solid fa-upload mh-50"></i></div>
+              <div>
+                <label for="getFile" role="button"
+                  ><p><strong>Choose a file</strong> or drag it here</p></label
+                >
+                <input
+                  type="file"
+                  class="fileInput d-none"
+                  name="file"
+                  id="getFile"
+                  multiple
+                />
+              </div>
             </div>
-          </div>
 
-          <!-- file uploader closes  -->
+            <!-- file uploader closes  -->
 
-          <!-- --- tablist ---  -->
-          <!-- <div class="d-flex align-items-start flex-column m-2"> -->
-          <!-- <div class="buttonDiv"> -->
-          <!-- <div
+            <!-- --- tablist ---  -->
+            <!-- <div class="d-flex align-items-start flex-column m-2"> -->
+            <!-- <div class="buttonDiv"> -->
+            <!-- <div
               class="nav flex nav-pills me-3 w-100"
               id="v-pills-tab"
               role="tablist"
@@ -172,193 +176,451 @@
                 Settings
               </button>
             </div> -->
-          <div class="div">
-            <div class="buttonDiv">
-              <div class="btn-group">
-                <button class="button active" data-bs-target="#v-pills-home">
-                  NDVI
-                </button>
-                <button class="button" data-bs-target="#v-pills-messages">
-                  NDBI
-                </button>
-                <button class="button" data-bs-target="#v-pills-profile">
-                  NDWI
+            <div class="div">
+              <div class="buttonDiv">
+                <div class="btn-group">
+                  <button class="button active" data-bs-target="#v-pills-home">
+                    NDVI
+                  </button>
+                  <button class="button" data-bs-target="#v-pills-messages">
+                    NDBI
+                  </button>
+                  <button class="button" data-bs-target="#v-pills-profile">
+                    NDWI
+                  </button>
+                </div>
+
+                <button class="button" data-bs-target="#v-pills-settings">
+                  Hillshade
                 </button>
               </div>
-
-              <button class="button" data-bs-target="#v-pills-settings">
-                Hillshade
-              </button>
-            </div>
-            <div class="tab-content" id="v-pills-tabContent">
-              <div
-                class="tab-pane fade show active"
-                id="v-pills-home"
-                role="tabpanel"
-                aria-labelledby="v-pills-home-tab"
-              >
-                <div class="form">
-                  <div class="imageryDiv">
-                    <div class="imagery">
-                      <label for="imagery">Imagery:</label>
-                      <select name="" id="" class="form-control">
-                        <option
-                          value=""
-                          aria-placeholder="Select an imagery"
-                          selected
-                          disabled
-                        >
-                          Select an imagery
-                        </option>
-                        <option value="">Landsat8</option>
-                        <option value="">Sentinel2A</option>
-                      </select>
-                    </div>
-                    <div class="DateRangeDiv input-group date">
-                      <label for="">Date Range:</label>
-                      <input type="date" placeholder="start-date" /><span
-                        >to</span
-                      ><input type="date" placeholder="end-date" />
-                    </div>
-                    <div class="imageryBtn">
-                      <button>show</button>
-                    </div>
-                  </div>
-                  <div class="Rand0Div">
-                    <div class="visualization">
-                      <h4>Visualization</h4>
-                      <!-- <button class="visualizationBtn">Show layer</button> -->
-                      <label for="" class="switch">
-                        <input type="checkbox" class="switchCheckbox">
-                        <span class="switchSlider round"></span>
-                      </label>
-                    </div>
-                    <div class="showRangeDiv">
-                      <div class="RangeDiv">
-                        <div>
-                          <label for="range">Range:</label>
-                          <input
-                            type="number"
-                            name="amountInput"
-                            min="0"
-                            max="0.05"
-                            value="0"
-                            step="0.01"
-                          />
-                          <span>-</span>
-                          <input
-                            type="number"
-                            name="amountInput"
-                            min="0"
-                            max="0.05"
-                            value="0"
-                            step="0.01"
-                          />
-                        </div>
-                        <div>
-                          <select name="" id="" class="form-control">
-                            <option value="custom" selected disabled>
-                              Custom
-                            </option>
-                            <option value="">Stretch: 1 &#963;</option>
-                            <option value="">Stretch: 2 &#963;</option>
-                            <option value="">Stretch: 3 &#963;</option>
-                            <option value="">Stretch: 90%</option>
-                            <option value="">Stretch: 98%</option>
-                            <option value="">Stretch: 100%</option>
-                          </select>
-                        </div>
+              <div class="tab-content" id="v-pills-tabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="v-pills-home"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-home-tab"
+                >
+                  <div class="form">
+                    <div class="imageryDiv">
+                      <div class="imagery">
+                        <label for="imagery">Imagery:</label>
+                        <select name="" id="" class="form-control">
+                          <option
+                            value=""
+                            aria-placeholder="Select an imagery"
+                            selected
+                            disabled
+                          >
+                            Select an imagery
+                          </option>
+                          <option value="">Landsat8</option>
+                          <option value="">Sentinel2A</option>
+                        </select>
                       </div>
-                      <div class="opacityDiv">
-                        <div class="opacity">
-                          <p>opacity</p>
-                          <input
-                            type="range"
-                            class="slider"
-                            value="0"
-                            min="0"
-                            max="1"
-                            step="0.1"
-                            oninput="this.nextElementSibling.value = this.value"
-                          />
-                          <output>0</output>
-                        </div>
-                        <div class="radios">
+                      <div class="DateRangeDiv input-group date">
+                        <label for="">Date Range:</label>
+                        <input type="date" placeholder="start-date" /><span
+                          >to</span
+                        ><input type="date" placeholder="end-date" />
+                      </div>
+                      <div class="imageryBtn">
+                        <button>show</button>
+                      </div>
+                    </div>
+                    <div class="Rand0Div">
+                      <div class="visualization">
+                        <h4>Visualization</h4>
+                        <!-- <button class="visualizationBtn">Show layer</button> -->
+                        <label for="" class="switch">
+                          <input type="checkbox" class="switchCheckbox" />
+                          <span class="switchSlider round"></span>
+                        </label>
+                      </div>
+                      <div class="showRangeDiv">
+                        <div class="RangeDiv">
                           <div>
+                            <label for="range">Range:</label>
                             <input
-                              type="radio"
-                              name="checkRadio"
-                              id="gamma"
-                              value="gamma"
-                              id="gamma"
-                              checked
+                              type="number"
+                              name="amountInput"
+                              min="0"
+                              max="0.05"
+                              value="0"
+                              step="0.01"
                             />
-                            <label for="gamma">Gamma</label>
-                            <div class="gammaSlider">
+                            <span>-</span>
+                            <input
+                              type="number"
+                              name="amountInput"
+                              min="0"
+                              max="0.05"
+                              value="0"
+                              step="0.01"
+                            />
+                          </div>
+                          <div>
+                            <select name="" id="" class="form-control">
+                              <option value="custom" selected disabled>
+                                Custom
+                              </option>
+                              <option value="">Stretch: 1 &#963;</option>
+                              <option value="">Stretch: 2 &#963;</option>
+                              <option value="">Stretch: 3 &#963;</option>
+                              <option value="">Stretch: 90%</option>
+                              <option value="">Stretch: 98%</option>
+                              <option value="">Stretch: 100%</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="opacityDiv">
+                          <div class="opacity">
+                            <p>opacity</p>
+                            <input
+                              type="range"
+                              class="slider"
+                              value="0"
+                              min="0"
+                              max="1"
+                              step="0.1"
+                              oninput="this.nextElementSibling.value = this.value"
+                            />
+                            <output>0</output>
+                          </div>
+                          <div class="radios">
+                            <div class="radioBox">
                               <input
-                                type="range"
-                                class="slider"
-                                value="0"
-                                min="1"
-                                max="20"
-                                oninput="this.nextElementSibling.value = this.value"
+                                type="radio"
+                                name="checkRadio"
+                                id="gamma"
+                                value="gamma"
+                                id="gamma"
+                                checked
                               />
-                              <output>0</output>
+                              <label for="gamma">Gamma</label>
+                              <div class="gammaSlider">
+                                <input
+                                  type="range"
+                                  class="slider"
+                                  value="0"
+                                  min="1"
+                                  max="20"
+                                  oninput="this.nextElementSibling.value = this.value"
+                                />
+                                <output>0</output>
+                              </div>
+                            </div>
+                            <div class="radioBox">
+                              <input
+                                type="radio"
+                                name="checkRadio"
+                                id="palette"
+                                value="palette"
+                                class="palette"
+                              />
+                              <label for="palette">Palette</label>
+                              <input
+                                type="color"
+                                class="colshow activeorInput"
+                              />
                             </div>
                           </div>
-                          <input
-                            type="radio"
-                            name="checkRadio"
-                            id="palette"
-                            value="palette"
-                            class="palette"
-                          />
-                          <label for="palette">Palette</label>
-                          <input type="color" class="colorInput" />
                         </div>
-                      </div>
-                      <div class="btn">
-                        <button>Apply</button>
+                        <div class="btn">
+                          <button>Apply</button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-profile"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-profile-tab"
+                >
+                  <div class="form">
+                    <div class="imageryDiv">
+                      <div class="imagery">
+                        <label for="imagery">Imagery:</label>
+                        <select name="" id="" class="form-control">
+                          <option
+                            value=""
+                            aria-placeholder="Select an imagery"
+                            selected
+                            disabled
+                          >
+                            Select an imagery
+                          </option>
+                          <option value="">Landsat8</option>
+                          <option value="">Sentinel2A</option>
+                        </select>
+                      </div>
+                      <div class="DateRangeDiv input-group date">
+                        <label for="">Date Range:</label>
+                        <input type="date" placeholder="start-date" /><span
+                          >to</span
+                        ><input type="date" placeholder="end-date" />
+                      </div>
+                      <div class="imageryBtn">
+                        <button>show</button>
+                      </div>
+                    </div>
+                    <div class="Rand0Div">
+                      <div class="visualization">
+                        <h4>Visualization</h4>
+                        <!-- <button class="visualizationBtn">Show layer</button> -->
+                        <label for="" class="switch">
+                          <input type="checkbox" class="switchCheckbox" />
+                          <span class="switchSlider round"></span>
+                        </label>
+                      </div>
+                      <div class="showRangeDiv">
+                        <div class="RangeDiv">
+                          <div>
+                            <label for="range">Range:</label>
+                            <input
+                              type="number"
+                              name="amountInput"
+                              min="0"
+                              max="0.05"
+                              value="0"
+                              step="0.01"
+                            />
+                            <span>-</span>
+                            <input
+                              type="number"
+                              name="amountInput"
+                              min="0"
+                              max="0.05"
+                              value="0"
+                              step="0.01"
+                            />
+                          </div>
+                          <div>
+                            <select name="" id="" class="form-control">
+                              <option value="custom" selected disabled>
+                                Custom
+                              </option>
+                              <option value="">Stretch: 1 &#963;</option>
+                              <option value="">Stretch: 2 &#963;</option>
+                              <option value="">Stretch: 3 &#963;</option>
+                              <option value="">Stretch: 90%</option>
+                              <option value="">Stretch: 98%</option>
+                              <option value="">Stretch: 100%</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="opacityDiv">
+                          <div class="opacity">
+                            <p>opacity</p>
+                            <input
+                              type="range"
+                              class="slider"
+                              value="0"
+                              min="0"
+                              max="1"
+                              step="0.1"
+                              oninput="this.nextElementSibling.value = this.value"
+                            />
+                            <output>0</output>
+                          </div>
+                          <div class="radios">
+                            <div>
+                              <input
+                                type="radio"
+                                name="checkRadio"
+                                id="gamma"
+                                value="gamma"
+                                id="gamma"
+                                checked
+                              />
+                              <label for="gamma">Gamma</label>
+                              <div class="gammaSlider">
+                                <input
+                                  type="range"
+                                  class="slider"
+                                  value="0"
+                                  min="1"
+                                  max="20"
+                                  oninput="this.nextElementSibling.value = this.value"
+                                />
+                                <output>0</output>
+                              </div>
+                            </div>
+                            <input
+                              type="radio"
+                              name="checkRadio"
+                              id="palette"
+                              value="palette"
+                              class="palette"
+                            />
+                            <label for="palette">Palette</label>
+                            <input type="color" class="colorInput" />
+                          </div>
+                        </div>
+                        <div class="btn">
+                          <button>Apply</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-messages"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-messages-tab"
+                >
+                  <div class="form">
+                    <div class="imageryDiv">
+                      <div class="imagery">
+                        <label for="imagery">Imagery:</label>
+                        <select name="" id="" class="form-control">
+                          <option
+                            value=""
+                            aria-placeholder="Select an imagery"
+                            selected
+                            disabled
+                          >
+                            Select an imagery
+                          </option>
+                          <option value="">Landsat8</option>
+                          <option value="">Sentinel2A</option>
+                        </select>
+                      </div>
+                      <div class="DateRangeDiv input-group date">
+                        <label for="">Date Range:</label>
+                        <input type="date" placeholder="start-date" /><span
+                          >to</span
+                        ><input type="date" placeholder="end-date" />
+                      </div>
+                      <div class="imageryBtn">
+                        <button>show</button>
+                      </div>
+                    </div>
+                    <div class="Rand0Div">
+                      <div class="visualization">
+                        <h4>Visualization</h4>
+                        <!-- <button class="visualizationBtn">Show layer</button> -->
+                        <label for="" class="switch">
+                          <input type="checkbox" class="switchCheckbox" />
+                          <span class="switchSlider round"></span>
+                        </label>
+                      </div>
+                      <div class="showRangeDiv">
+                        <div class="RangeDiv">
+                          <div>
+                            <label for="range">Range:</label>
+                            <input
+                              type="number"
+                              name="amountInput"
+                              min="0"
+                              max="0.05"
+                              value="0"
+                              step="0.01"
+                            />
+                            <span>-</span>
+                            <input
+                              type="number"
+                              name="amountInput"
+                              min="0"
+                              max="0.05"
+                              value="0"
+                              step="0.01"
+                            />
+                          </div>
+                          <div>
+                            <select name="" id="" class="form-control">
+                              <option value="custom" selected disabled>
+                                Custom
+                              </option>
+                              <option value="">Stretch: 1 &#963;</option>
+                              <option value="">Stretch: 2 &#963;</option>
+                              <option value="">Stretch: 3 &#963;</option>
+                              <option value="">Stretch: 90%</option>
+                              <option value="">Stretch: 98%</option>
+                              <option value="">Stretch: 100%</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="opacityDiv">
+                          <div class="opacity">
+                            <p>opacity</p>
+                            <input
+                              type="range"
+                              class="slider"
+                              value="0"
+                              min="0"
+                              max="1"
+                              step="0.1"
+                              oninput="this.nextElementSibling.value = this.value"
+                            />
+                            <output>0</output>
+                          </div>
+                          <div class="radios">
+                            <div class="radioBox">
+                              <input
+                                type="radio"
+                                name="checkRadio"
+                                id="gamma"
+                                value="gamma"
+                                id="gamma"
+                                checked
+                              />
+                              <label for="gamma">Gamma</label>
+                              <div>
+                                <input
+                                  type="range"
+                                  class="slider"
+                                  value="0"
+                                  min="1"
+                                  max="20"
+                                  oninput="this.nextElementSibling.value = this.value"
+                                />
+                                <output>0</output>
+                              </div>
+                            </div>
+                            <div class="radioBox">
+                              <input
+                                type="radio"
+                                name="checkRadio"
+                                id="palette"
+                                value="palette"
+                                class="palette"
+                              />
+                              <label for="palette">Palette</label>
+                              <input type="color" class="colorInput" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="btn">
+                          <button>Apply</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-settings"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-settings-tab"
+                >
+                  settings
+                </div>
               </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-profile"
-                role="tabpanel"
-                aria-labelledby="v-pills-profile-tab"
-              >
-                profile
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-messages"
-                role="tabpanel"
-                aria-labelledby="v-pills-messages-tab"
-              >
-                messeges
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-settings"
-                role="tabpanel"
-                aria-labelledby="v-pills-settings-tab"
-              >
-                settings
-              </div>
-            </div>
-            <!-- </div> -->
-            <!-- check boxes -->
-            <div class="checkBoxDiv">
-              <div class="checkBox">
-                <input type="checkbox" name="infoGraph" />
-                <label for="infoGraph">show Legend</label>
-              </div>
-              <div class="checkBox">
-                <input type="checkbox" name="legend" />
-                <label for="legend">show Infograph</label>
+              <!-- </div> -->
+              <!-- check boxes -->
+              <div class="checkBoxDiv">
+                <div class="checkBox">
+                  <input type="checkbox" name="infoGraph" />
+                  <label for="infoGraph">show Legend</label>
+                </div>
+                <div class="checkBox">
+                  <input type="checkbox" name="legend" />
+                  <label for="legend">show Infograph</label>
+                </div>
               </div>
             </div>
           </div>
@@ -381,11 +643,9 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-   
-
   </body>
 
   <script src="{% static 'js/map.js' %}"></script>

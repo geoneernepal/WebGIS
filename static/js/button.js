@@ -18,49 +18,82 @@ const gammaSlider = document.querySelector(".gammaSlider")
 const radios = document.querySelectorAll(".radios")
 const visualizationBtn = document.querySelector(".visualizationBtn")
 const showRangeDiv = document.querySelector(".showRangeDiv")
-const switchCheckBox = document.querySelector(".switchCheckbox")
-const switchCheck = document.querySelector(".switch")
+const switchCheckBox = document.querySelectorAll(".switchCheckbox")
+const switchCheck = document.querySelectorAll(".switch")
+const radioBox = document.querySelectorAll(".radioBox")
+const colshow = document.querySelector(".colshow")
+const leftPaneBtn = document.querySelector(".left-pane-btn")
+const toggle = document.querySelector(".toggleShow")
+const leftPane = document.querySelector("#left-pane")
 
-// if(switchCheckBox.checked){
-//   switchCheckBox.checked === false
-// }else {
-//   switchCheckBox.checked === true
-// }
+let smallScreen = false
 
+let isSmallWindow = () => window.innerWidth <= 428
 
-const toggleCheckBox = () => {
-  switchCheckBox.checked = !switchCheckBox.checked
+const setButtonMode = () => {
+  if(isSmallWindow()){
+    if(!smallScreen){
+      leftPaneBtn.style.display = "block"
+      smallScreen = true
+    }
+  }else {
+    leftPaneBtn.style.display = "none"
+    smallScreen = false
+  }
 }
 
-switchCheck.addEventListener("click",toggleCheckBox)
+window.addEventListener("resize",setButtonMode)
+window.addEventListener("load",setButtonMode)
 
-visualizationBtn.addEventListener("click",(e) => {
-  console.log(e)
+leftPaneBtn.addEventListener("click",() => {
+  toggle.classList.toggle("toggleShow")
+
+
 })
 
-const showDiv = (e) => {
+const showRadio = (e) => {
+  // console.log(e)
   if(e.target.type !== "radio")
   return;
 
+  // radioBox.forEach(radio => {
+  //   radio.addEventListener("click",(e) => {
+  //    console.log(e.target.childNodes[0].nodeValue === "Gamma")
+  //    if(e.target.childNodes[0].nodeValue === "Gamma"){
+       
+  //    }
+
+  //   })
+  // })
+
   if(e.target.id === "gamma"){
     gammaSlider.style.display = e.target.checked ? "block" : "none"
-    colorInput.style.display = "none"
-  }else{
-    colorInput.style.display = e.target.checked ? "block" : "none"
+    colshow.style.display = "none"
+  }else {
+    colshow.style.display = e.target.checked ? "block" : "none"
     gammaSlider.style.display = "none"
   }
 }
 
-radios.forEach(radio => {
-  radio.addEventListener("click",showDiv)
+radioBox.forEach(box => {
+  box.addEventListener("click",showRadio)
+})
+
+const toggleCheckBox = () => {
+  switchCheckBox.forEach(box => {
+    box.checked = !box.checked
+  })
+}
+
+switchCheck.forEach(item => {
+  item.addEventListener("click",toggleCheckBox)
 })
 
 let colors = []
 
-
 currentbtn.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    console.log(e.currentTarget);
+    // console.log(e.currentTarget);
     currentbtn.forEach((btn) => btn.classList.remove("active"));
     e.target.classList.toggle("active");
   });
