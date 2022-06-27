@@ -25,21 +25,28 @@ body {
   z-index: 1;
 }
 
-#left-pane {
-  height: 95vh;
-  max-width: 30%;
+#mydiv {
   position: absolute;
-  top: 0;
-  left: 0;
-  margin: 10px;
-  z-index: 10;
-  background-color: aliceblue;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
   /* opacity: 0.8; */
   /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .left-pane-detail {
   opacity: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#mydivheader{
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #f1f1f1;
+  color: #000;
 }
 
 /* file upload  */
@@ -536,3 +543,77 @@ body {
       display: none;
     }
 }
+
+
+
+
+
+/* osm hackfest */
+
+.form-row{
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.first-header{
+  margin-left: 5px;
+}
+
+.second-col{
+  margin-left: 5px;
+}
+
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+
+
+/* for collapsible div  */
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+
+
